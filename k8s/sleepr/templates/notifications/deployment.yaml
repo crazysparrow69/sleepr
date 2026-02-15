@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: notifications
+  name: notifications
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notifications
+  template:
+    metadata:
+      labels:
+        app: notifications
+    spec:
+      containers:
+        - image: europe-central2-docker.pkg.dev/sleepr-486722/notifications/production
+          name: notifications
+          env:
+            - name: PORT
+              value: '3000'
+            - name: RESEND_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: resend
+                  key: apiKey
+            - name: EMAIL_FROM
+              value: sleepr-noreply@tododoo.site
+          ports:
+            - containerPort: 3000

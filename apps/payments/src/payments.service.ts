@@ -15,7 +15,7 @@ export class PaymentsService {
     private readonly notificationsService: ClientProxy,
   ) {
     this.stripe = new Stripe(
-      this.configService.get('STRIPE_SCERET_KEY') as string,
+      this.configService.get('STRIPE_SECRET_KEY') as string,
     );
   }
 
