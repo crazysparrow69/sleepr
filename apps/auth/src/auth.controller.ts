@@ -7,7 +7,7 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 import { CurrentUser } from '@app/common';
 import { UserDocument } from '@app/common/models';
 
-@Controller()
+@Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
